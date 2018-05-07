@@ -9,14 +9,23 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function activations()
+    {
+        
+        return $this->hasOne(\App\UserActivation::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','registration_id','validation_status','active',
     ];
+
+
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,5 +44,16 @@ class User extends Authenticatable
     public function acts()
     {
         return $this->hasMany(Act::class, 'user_id');
+    }
+
+    public function addActivationsData($token)
+    {   
+        if ($this->activations) {
+            $this->activations()->update(['token'=>$token]);
+        } else {
+            $this->activations()->save(new \App\UserActivation([
+                'token' => $token
+            ]));
+        }
     }
 }

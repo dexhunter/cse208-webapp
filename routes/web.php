@@ -23,4 +23,14 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
 
+Route::get('/send', 'Auth\LoginController@send');
+
+// Route::get('/xxx', function() {
+//     $this -> error('Display this on the screen');
+//     echo "xx";
+// });
+
+Route::get('/sendActivationMail','Auth\RegisterController@create');
+
+Route::get('/activeAccount','Auth\RegisterController@active');
 // Route::get('/org', 'PagesController@organisation');
