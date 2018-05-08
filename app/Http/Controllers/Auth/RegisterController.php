@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/logout';
 
     /**
      * Create a new controller instance.
@@ -52,9 +52,13 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'email' => 'required|string|email|email_domain:' . $data['email'] . '|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed'
+        ],
+        [
+            'required' => 'This information is required',
+            'email.domain' => 'only XJTLU email can be used to register'
+        ]); 
     }
 
     /**
@@ -97,6 +101,6 @@ class RegisterController extends Controller
             return redirect('/login');
         }
     
-        return redirect('/');
+        return redirect('/logout');
     }
 }
