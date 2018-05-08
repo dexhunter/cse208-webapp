@@ -25,6 +25,9 @@ Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/send', 'Auth\LoginController@send');
 
+Route::get('/login', 'Auth\LoginController@showLogin');
+
+
 // Route::get('/xxx', function() {
 //     $this -> error('Display this on the screen');
 //     echo "xx";
