@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->int('org_id');
-            $table->int('school_id')->unique();
+            // $table->string('org_id')->default(null);
+            // $table->string('school_id');
+            $table->string('registration_id');
+            $table->boolean('active');
         });
     }
 

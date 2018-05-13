@@ -28,7 +28,6 @@ class CreateActsTable extends Migration
             $table->timestamps(); //created time
             $table->integer('creator_id');
             $table->string('cover_image');
-            $table->string('cover_image');
         });
     }
 
