@@ -23,4 +23,9 @@ Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
 
+Route::get('/send', 'Auth\LoginController@send');
+
+Route::get('/sendActivationMail','Auth\RegisterController@create');
+
+Route::get('/activeAccount','Auth\RegisterController@active');
 // Route::get('/org', 'PagesController@organisation');
