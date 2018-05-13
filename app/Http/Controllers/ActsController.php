@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Act;
-use App\Org;
+// use App\Org;
 use DB;
 
 class ActsController extends Controller
@@ -45,29 +45,31 @@ class ActsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            // 'cover_image' => 'image|nullable|max:1999'
         ]);
         // Handle File Upload
-        if($request->hasFile('cover_image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just ext
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        } else {
-            $fileNameToStore = 'noimage.jpg';
-        }
+        // if($request->hasFile('cover_image')){
+        //     // Get filename with the extension
+        //     $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+        //     // Get just filename
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     // Get just ext
+        //     $extension = $request->file('cover_image')->getClientOriginalExtension();
+        //     // Filename to store
+        //     $fileNameToStore= $filename.'_'.time().'.'.$extension;
+        //     // Upload Image
+        //     $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        // } else {
+        //     $fileNameToStore = 'noimage.jpg';
+        // }
         // Create Activity 
         $act = new Act;
         $act->title = $request->input('title');
         $act->body = $request->input('body');
+        $act->start_time = $request->input('start_time');
+        $act->end_time = $request->input('end_time');
         $act->user_id = auth()->user()->id;
-        $act->cover_image = $fileNameToStore;
+        // $act->cover_image = $fileNameToStore;
         $act->save();
         return redirect('/acts')->with('success', 'Activity Created');
     }
@@ -116,26 +118,26 @@ class ActsController extends Controller
             'body' => 'required'
         ]);
          // Handle File Upload
-        if($request->hasFile('cover_image')){
-            // Get filename with the extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just ext
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        }
+        // if($request->hasFile('cover_image')){
+        //     // Get filename with the extension
+        //     $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+        //     // Get just filename
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     // Get just ext
+        //     $extension = $request->file('cover_image')->getClientOriginalExtension();
+        //     // Filename to store
+        //     $fileNameToStore= $filename.'_'.time().'.'.$extension;
+        //     // Upload Image
+        //     $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        // }
 
         // Create Activity 
         $activity = Act::find($id);
         $act->title = $request->input('title');
         $act->body = $request->input('body');
-        if($request->hasFile('cover_image')){
-            $act->cover_image = $fileNameToStore;
-        }
+        // if($request->hasFile('cover_image')){
+        //     $act->cover_image = $fileNameToStore;
+        // }
         $act->save();
         return redirect('/acts')->with('success', 'Act Updated');
     }

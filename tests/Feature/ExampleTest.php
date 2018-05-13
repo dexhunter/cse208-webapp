@@ -13,9 +13,16 @@ class ExampleTest extends TestCase
      * @return void
      */
     public function testBasicTest()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+    {        
+        $this->visit('/')
+        ->see('BBAPP');
     }
+
+    public function testPage()
+    {
+        $this->visit('/')
+        ->click('About')
+        ->seePageIs('/about');
+    }
+
 }

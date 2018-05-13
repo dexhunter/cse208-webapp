@@ -27,10 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function orgs()
-    {
-        return $this->belongsToMany(Org::class, 'org_user');
-    }
+    // public function orgs()
+    // {
+    //     return $this->belongsToMany(Org::class, 'org_user');
+    // }
 
     public function acts()
     {
