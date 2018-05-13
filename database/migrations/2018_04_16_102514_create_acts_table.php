@@ -21,9 +21,14 @@ class CreateActsTable extends Migration
             $table->enum('category', array('lecture', 'charity', 'job', 'outdoors', 'competition', 'recruiting', 'exhibition', 'other'));
             $table->dateTime('start_time'); //Activity start time
             $table->dateTime('end_time'); //Activity end time
+            // $table->dateTime('registration_start_time'); //Registration start time
+            // $table->dateTime('registration_end_time'); //Registration end time
             $table->integer('num_ppl')->default(0); // the number of people attending
             $table->enum('status', array('planning', 'ongoing', 'ended'));
-            $table->timestamps();
+            $table->timestamps(); //created time
+            $table->integer('creator_id');
+            $table->string('cover_image');
+            $table->string('cover_image');
         });
     }
 

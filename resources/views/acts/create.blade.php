@@ -23,12 +23,15 @@
         </div>
         <div class="form-row">
             <div class="form-group md-6">
-                {{Form::label('start_time', 'Start Time')}}
-                {{Form::date('start_time', new \DateTime(), ['class' => 'form-control'])}}
+                {{Form::label('start_time', 'Activity Start Time: ')}}
+                {{Form::Date('start_time', new \DateTime(), ['class' => 'form-control'])}}
+                {{-- {{ Form:text('start_time', null ['class' => 'form-control, 'id' => 'datetimepicker1']) }} --}}
             </div>
             <div class="form-group md-6">
-                {{Form::label('end_time', 'End Time')}}
-                {{Form::date('end_time', new \DateTime(), ['class' => 'form-control'])}}
+                {{Form::label('end_time', 'Activity End Time: ')}}
+                {{Form::Date('end_time', new \DateTime(), ['class' => 'form-control'])}}
+                {{-- {{ Form:text('end_time', null ['class' => 'form-control, 'id' => 'datetimepicker2']) }} --}}
+            </div>
             </div>
         </div>
         <div class="form-group">

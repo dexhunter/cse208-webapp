@@ -13,8 +13,13 @@ class Act extends Model
 
     public $timestamps = true;
 
-    public function user()
+    public function creator()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function participants()
+    {
+        return $this->hasMany('App\User');
     }
 }

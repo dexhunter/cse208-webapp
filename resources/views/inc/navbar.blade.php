@@ -14,8 +14,18 @@
       <li class="nav-item">
         <a class="nav-link" href="/orgs">Organisation</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/acts">Activity</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/acts" role="button" aria-haspopup="true" aria-expanded="false">Activity</a>
+        <div class="dropdown-menu">
+          <a href="/acts" class="dropdown-item">lecture</a>
+          <a href="/acts" class="dropdown-item">charity</a>
+          <a href="/acts" class="dropdown-item">job</a>
+          <a href="/acts" class="dropdown-item">outdoors</a>
+          <a href="/acts" class="dropdown-item">competition</a>
+          <a href="/acts" class="dropdown-item">recruiting</a>
+          <a href="/acts" class="dropdown-item">exhibition</a>
+          <a href="/acts" class="dropdown-item">other</a>
+        </div>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
