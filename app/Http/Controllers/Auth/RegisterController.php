@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -22,13 +23,13 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/logout';
 
     /**
      * Create a new controller instance.
@@ -40,6 +41,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -50,9 +52,13 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+            'email' => 'required|string|email|email_domain:' . $data['email'] . '|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed'
+        ],
+        [
+            'required' => 'This information is required',
+            'email.domain' => 'only XJTLU email can be used to register'
+        ]); 
     }
 
     /**
@@ -63,10 +69,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $data['activationcode'] = md5($data['name'].time()); 
+        $newUser = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'registration_id' => $data['activationcode'], 
+            'active' => false,
         ]);
+        $data['id'] = $newUser->id;
+        $this->send_validation_email($data);
+        return $newUser;
+    }
+
+    protected function send_validation_email($data){
+        Mail::send('auth.activemail',$data, function($message) use($data){
+            $message -> subject("Welcome to Glue");
+            $message -> to($data['email'],$data['name']);
+            session()->flash('success', 'please check your mailbox to validate your account.');
+        });
+        return redirect('/');
+    }
+
+    public function active()
+    {
+        $token = request('verify');
+        $rs = User::where('registration_id', $token)
+                            ->whereBetween('updated_at', [Carbon::now()->subDay(), Carbon::now()]);
+        if ($rs->exists()) {
+            $rs->update(['active'=>true]);
+            return redirect('/login');
+        }
+    
+        return redirect('/logout');
     }
 }
