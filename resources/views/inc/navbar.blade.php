@@ -40,11 +40,28 @@
                 </div>
               </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control ml-md-5 mr-sm-2" type="search" placeholder="Search" value="data">
-            {{-- <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" href=" {{!! route('act/search', ['data'=>$data])!! }} ">Search</button> --}}
+
+          {{-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control ml-md-5 mr-sm-2" type="search" placeholder="Search" value="data" >
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" href=" {{!! route('act/search', ['data'=>$data])!! }} ">Search</button>
             <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" href=" {{ asset('acts/search?') }} ">Search</button>
+          </form> --}}
+
+          <form action="/search" method="post" role="search" class="form-inline my-2 my-lg-0">
+            @csrf
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search Activity by Title">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-warning" value="Search">
+                  <span class="fa fa-search">
+                  </span>
+                </button>
+              </span>
+            </div>
           </form>
+
+
+
         </div>
       
         <!-- Right Side Of Navbar -->

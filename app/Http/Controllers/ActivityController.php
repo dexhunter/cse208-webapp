@@ -11,7 +11,7 @@ class ActivityController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'searchByCategory']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'searchByCategory', 'searchByString']]);
     }
 
     public function searchByCategory(Request $request)
@@ -22,8 +22,8 @@ class ActivityController extends Controller
 
     public function searchByString(Request $request)
     {
-        $searchInput = $request->query('s');
-        $acts = Activity::where('title', 'LIKE', '%'.$searchInput.'%')->orderBy('created_at', 'desc')->paginate(10);
+        $searchInput = $request->get('q');
+        $acts = Activity::where('title', 'LIKE', '%'.$searchInput.'%')->orWhere('body', 'LIKE', '%'.$searchInput.'%')->orderBy('created_at', 'desc')->paginate(10);
         return view('activities.index')->with('activities', $acts);
     }
 

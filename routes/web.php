@@ -26,9 +26,11 @@ Auth::routes();
 
 Route::get('alluser', 'UserController@Alluser');
 // Route::post('/acts', 'ActivityContoller@joinUser');
-Route::post('acts/{id}', 'UserController@joinAct')->where('id', '[0-6]+');
-Route::get('acts/category/{category_no}', 'ActivityController@searchByCategory');
+
+Route::post('acts/{id}', 'UserController@joinAct');
+
+Route::get('acts/category/{category_no}', 'ActivityController@searchByCategory')->where('id', '[0-6]+');
 
 Route::get('acts/pageview', 'ActivityController@sortByPageView');
 
-Route::get('acts/search', 'ActivityController@searchByString');
+Route::any('/search', 'ActivityController@searchByString');
