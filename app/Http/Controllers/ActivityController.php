@@ -11,7 +11,7 @@ class ActivityController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'searchByCategory', 'searchByString']]);
+        $this->middleware('auth', ['only' => ['create', 'edit', 'update', 'destroy', 'store']]);
     }
 
     public function searchByCategory(Request $request)
