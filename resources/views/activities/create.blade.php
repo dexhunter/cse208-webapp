@@ -4,7 +4,13 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+    <div class="col-md-2"></div>
+    <div class="jumbotron col-md-8 text-center">
+
     <h1>Create Activity</h1>
+    </div>
+    </div>
     <form action=" {{url('acts')}} " method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -59,7 +65,7 @@
                 <div class="form-group">
                         <label for="StartTime">Start Datetime: </label>
                     <div class="input-group date" id="datetimepicker1">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="start_time">
                         &nbsp;
                         <span class="input-group-addon">
                             <span class="fa fa-calendar"></span>
@@ -75,7 +81,7 @@
                 <div class="form-group">
                         <label for="EndTime">End Datetime: </label>
                     <div class="input-group date" id="datetimepicker2">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="end_time">
                         &nbsp;
                         <span class="input-group-addon">
                             <span class="fa fa-calendar"></span>
@@ -89,7 +95,7 @@
             <div class="col-md-2"></div>
             <div class="form-group col-md-8">
                 <label for="Body">Content</label>
-                <textarea class="form-control" name="body" id="textbody" cols="95" rows="80" wrap="soft"></textarea>
+                <textarea class="form-control" name="body" id="textbody" cols="95" rows="300" wrap="soft"></textarea>
 
             </div>
 

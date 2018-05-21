@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div style="display: none;">
-    {{$act->addPageView()}}
-</div>
+    <div style="display: none;">
+        {{$act->addPageView()}}
+    </div>
     <a href="/acts" class="btn btn-default">Go Back</a>
     <h1>{{$act->title}}</h1>
     <img style="width:400px;" src="/cover_images/{{$act->cover_image}}">

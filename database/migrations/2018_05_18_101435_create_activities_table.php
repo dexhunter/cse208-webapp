@@ -21,6 +21,9 @@ class CreateActivitiesTable extends Migration
             $table->integer('category_no')->default(6); //Number of category
             $table->integer('num_ppl')->default(5); //Maximum number of people
             $table->string('cover_image');
+            $table->dateTime('start_time')->useCurrent();
+            $table->dateTime('end_time')->nullable();
+            $table->string('location');
             $table->timestamps();
         });
     }

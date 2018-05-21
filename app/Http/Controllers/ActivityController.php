@@ -83,6 +83,11 @@ class ActivityController extends Controller
         $act->category_no = (int)$request->input('category_no')[0]-1;
         $act->num_ppl = $request->input('num_ppl');
         $act->cover_image = $fileNameToStore;
+        // $act->start_time = $request->input('start_time');
+        // $act->end_time = $request->input('end_time');
+        $act->start_time = date_create_from_format('m/d/Y g:i A', $request->input('start_time'));
+        $act->end_time = date_create_from_format('m/d/Y g:i A', $request->input('end_time'));
+        $act->location = $request->input('location');
         $act->save();
 
         return redirect('acts')->with('success', 'Activity Created');
@@ -136,6 +141,9 @@ class ActivityController extends Controller
         $act->body = $request->get('body');
         $act->category_no = (int)($request->get('category_no')[0])-1;
         $act->num_ppl = $request->get('num_ppl');
+        $act->start_time = date_create_from_format('m/d/Y g:i A', $request->input('start_time'));
+        $act->end_time = date_create_from_format('m/d/Y g:i A', $request->input('end_time'));
+        $act->location = $request->input('location');
         if ($request->hasFile('cover_image'))
         {
             $act->cover_image = $fileNameToStore;
