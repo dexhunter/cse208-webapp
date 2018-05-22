@@ -25,7 +25,7 @@
         @endif
     </div>
 
-    @if(count($activities) > 0)
+    @if($activities != null && count($activities) > 0)
         @foreach($activities as $act)
             <div class="card mb-5">
                 <div class="row">
@@ -41,7 +41,7 @@
                         <p class="card-text">Publisher: {{$act->creator($act->creator_id)->name}}</p>
                             <p class="card-text">Views: {{$act->getPageViews()}}  </p>
                             <hr>
-                            <a href="/acts/{{$act->id}}" class="btn btn-danger">Read More </a>
+                            <a href="/acts/{{$act->id}}" class="btn btn-danger">Read More</a>
                         </div>
                     </div>
                 </div>

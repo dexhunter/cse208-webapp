@@ -17,6 +17,6 @@ class DashboardController extends Controller
         // $user = Auth::user();
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('dashboard')->with('activities', $user->activities);
+        return view('dashboard')->with(array('activities'=> $user->activities, 'user'=>$user));
     }
 }

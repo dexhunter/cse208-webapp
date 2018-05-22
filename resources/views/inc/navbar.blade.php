@@ -8,8 +8,8 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse offset-md-3" id="navbarToggler">
-          <a class="navbar-brand" href="/"><button class="btn btn-primary disabled">GLUE</button></a>
+        <div class="collapse navbar-collapse offset-md-2 col-md-8" id="navbarToggler">
+          <a class="navbar-brand" href="/"><img src="/logo.jpg" alt="" style="height:40px;"> </a>
           <ul class="navbar-nav mt-2 mt-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="/">Home </a>
@@ -35,8 +35,7 @@
                   <a class="dropdown-item" href="/acts/category/4">Competition</a>
                   <a class="dropdown-item" href="/acts/category/5">Exhibition</a>
                   <a class="dropdown-item" href="/acts/category/6">Other</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/acts/pageview">Page Views</a>
+                  {{-- <div class="dropdown-divider"></div> --}}
                 </div>
               </li>
           </ul>

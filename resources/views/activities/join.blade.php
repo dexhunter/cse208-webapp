@@ -7,34 +7,23 @@
     <div class="row">
     <div class="jumbotron col-md-8 text-center offset-md-2">
 
-    <h1>Create Activity</h1>
+    <h1>Join the Activity</h1>
     </div>
     </div>
 
     <form action=" {{url('acts')}} " method="post" enctype="multipart/form-data">
         @csrf
-        <div class="row">
-            <div class="form-group col-md-3 offset-md-2">
-                <label for="CoverImage">Upload Cover Image</label>
-                <div class="input-group">
-                    <input type="file" name="cover_image" id="imgInp" class="form-control-file">
-                </div>
-                <div class="text-center">
-                    <img id='img-upload' class="rouned mx-auto d-block">
-                </div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-2"></div>
             <div class="form-group col-md-3">
-                <label for="Title" class="form-control-label">Title: </label>
-                <input type="text" name="title" class="form-control" placeholder="Enter the name of the activity" required>
+                <label for="Name" class="form-control-label">Name: </label>
+                <input type="text" name="Name" class="form-control" placeholder="Enter Your Real Name" required>
                 <div class="valid-feedback">Look Good!</div>
                 <div class="invalid-feedback">Please enter</div>
             </div>
-            <div class="col-md-1"></div>
-            <div class="form-group col-md-3">
+
+            <div class="form-group col-md-3 offset-md-1">
                 <label for="Category">Category: </label>
                 <select name="category_no" class="form-control">
                     <option>1: lecture</option>
@@ -49,14 +38,12 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="form-group col-md-3">
-                <label for="Title">Maximum number of people allowed: </label>
-                <input type="number" name="num_ppl" class="form-control">
+            <div class="form-group col-md-3 offset-md-2">
+                <label for="ID">Please enter your student ID number </label>
+                <input type="text" name="student_id" class="form-control">
             </div>
-            <div class="col-md-1"></div>
-            <div class="form-group col-md-3">
-                <label for="Location">Location: </label>
+            <div class="form-group col-md-3 offset-md-1">
+                <label for="Location"> </label>
                 <input type="text" name="location" class="form-control">
             </div>
         </div>

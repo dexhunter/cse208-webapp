@@ -8,7 +8,6 @@ use Carbon\Carbon;
 class ActivityController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['create', 'edit', 'update', 'destroy', 'store']]);
@@ -28,13 +27,18 @@ class ActivityController extends Controller
         return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
     }
 
-    public function sortByPageView()
+    public function sortByPageView(Request $request)
     {
-        $acts = Activity::all()->sortByDesc(function ($act){
+        $sortedActs = Activity::all()->sortByDesc(function ($act){
             return $act->getPageViews();
         });
-        // $acts = Activity::all()->sortBy('page_views');
+        
+        return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
+    }
 
+    public function searchByPageView()
+    {
+        $acts = Activity::orderBy('created_at', 'desc')->paginate(10);
         return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
     }
 
@@ -185,6 +189,11 @@ class ActivityController extends Controller
             return redirect('acts')->with('error', 'You need to log in to join an acitivty');
         }
 
+    }
+
+    public function shareToTwitter($actid)
+    {
+        return Share::load('http://127.0.0.1/acts/'.$actid.'twitter', 'Sharing the activity to twitter')->twitter();
     }
 
 }

@@ -26,7 +26,7 @@ class UserController extends Controller
         if(!Auth::guest()){
             $me = Auth::user();
             if($me->activities->find($act) != null){
-                return redirect('acts')->with('error', 'You have already joined the activity');
+                return redirect('acts/'.$actid)->with('error', 'You have already joined the activity');
             }
             else{
                 $me->activities()->attach($act->id);
@@ -35,7 +35,7 @@ class UserController extends Controller
             }
         }
         else{
-            return redirect('acts')->with('error', 'You need to log in first');
+            return redirect('acts/'.$actid)->with('error', 'You need to log in first');
         }
     }
 

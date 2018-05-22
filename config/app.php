@@ -161,6 +161,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         CyrildeWit\PageViewCounter\PageViewCounterServiceProvider::class,
+        Chencha\Share\ShareServiceProvider::class,
+        \Actuallymab\LaravelComment\LaravelCommentServiceProvider::class,
+
 
 
 
@@ -212,6 +215,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Share' => Chencha\Share\ShareFacade::class,
 
     ],
 
