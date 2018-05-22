@@ -4,12 +4,12 @@
 }
   </style>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-info">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse offset-md-2 col-md-8" id="navbarToggler">
-          <a class="navbar-brand" href="/"><img src="/logo.jpg" alt="" style="height:40px;"> </a>
+          <a class="navbar-brand" href="/"><img src="/logo.png" alt="" style="height:40px;"> </a>
           <ul class="navbar-nav mt-2 mt-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="/">Home </a>
