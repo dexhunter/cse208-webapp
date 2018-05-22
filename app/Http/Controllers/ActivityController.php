@@ -161,15 +161,20 @@ class ActivityController extends Controller
 
     public function destroy($id)
     {
-        $act = Activity::find($id);
+        $act = Activity::findOrFail($id);
 
-        if(auth()->creator()->id !== $act->creator_id)
+        if(Auth::user()->id != $act->creator_id)
         {
-            return redirect('/acts')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        if($act->cover_image != 'noimage.jpg'){
+            // Delete Image
+            Storage::delete('storage/cover_images/'.$act->cover_image);
         }
 
         $act->delete();
-        return redirect('acts')->with('success', 'Activity Removed');
+        return redirect('dashboard')->with('success', 'Activity Removed');
     }
 
     public function joinUser($actid)
@@ -194,6 +199,10 @@ class ActivityController extends Controller
     public function shareToTwitter($actid)
     {
         return Share::load('http://127.0.0.1/acts/'.$actid.'twitter', 'Sharing the activity to twitter')->twitter();
+    }
+
+    public function fakeDestroy(){
+        return redirect('dashboard')->with('success', 'Activity Removed');
     }
 
 }

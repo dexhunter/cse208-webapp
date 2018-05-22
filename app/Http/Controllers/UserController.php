@@ -77,9 +77,6 @@ class UserController extends Controller
     public function AllUser()
     {
         $users = User::all();
-        #return $users->toJson();
-        // echo $users."\r\n";
-        // echo "\r\n";
         return $users->toArray();
     }
 
@@ -106,7 +103,12 @@ class UserController extends Controller
             echo implode("|", $res);
             return json_encode($res);
         }
+    }
 
-
+    public function userInfo($actid)
+    {
+        $act = Activity::findOrFail($actid);
+        $allusers = $act->users;
+        return view('activities.viewuser')->with('users', $allusers);
     }
 }

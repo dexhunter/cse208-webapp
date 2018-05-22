@@ -4,7 +4,8 @@
 
 <div class="container">
     <div class="jumbotron text-center my-3">
-        <h1>welcome to GLUE</h1>
+        <h1>welcome to GLUE </h1>
+        <img src="logo.png" style="height:100px;">
         <p>Where you find information</p>
     </div>
 

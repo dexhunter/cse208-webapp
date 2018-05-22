@@ -76,8 +76,8 @@
             @if(!Auth::guest())
                 @if(Auth::user()->id == $act->creator_id)
                     <a href="/acts/{{$act->id}}/edit" class="btn btn-warning btn-block py-3 my-3">Edit</a>
-                    <form action=" {{action('ActivityController@destroy', $act->id)}} " method="post">
-                        <input type="hidden" name="_method" value="DELETE">
+                    <form action=" {{ action('ActivityController@destroy', $act->id) }} " method="post">
+                        <input type="hidden" name="_method" value="Delete">
                         <input type="submit" value="Delete" class="btn btn-danger btn-block my-3 py-3">
                 </form>
                 @endif

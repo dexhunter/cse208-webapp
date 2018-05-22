@@ -5,21 +5,20 @@
   </style>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse offset-md-2 col-md-8" id="navbarToggler">
+
+        <div class="collapse navbar-collapse" id="navbarToggler">
           <a class="navbar-brand" href="/"><img src="/logo.png" alt="" style="height:40px;"> </a>
-          <ul class="navbar-nav mt-2 mt-lg-0">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="/">Home </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/about">About</a>
             </li>
-            {{-- <li class="nav-item">
-              <a class="nav-link" href="/orgs">Organisation</a>
-            </li> --}}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/acts" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Activity
@@ -39,14 +38,11 @@
                 </div>
               </li>
           </ul>
+        </div>
 
-          {{-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control ml-md-5 mr-sm-2" type="search" placeholder="Search" value="data" >
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" href=" {{!! route('act/search', ['data'=>$data])!! }} ">Search</button>
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" href=" {{ asset('acts/search?') }} ">Search</button>
-          </form> --}}
 
-          <form action="/search" method="post" role="search" class="form-inline my-2 my-lg-0">
+
+          <form action="/search" method="post" role="search" class="form-inline col-auto">
             @csrf
             <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search Activity by Title">
@@ -59,16 +55,13 @@
             </div>
           </form>
 
-
-
-        </div>
       
         <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav mt-2 mt-lg-0 mr-5">
+        <ul class="navbar-nav">
             <!-- Authentication Links -->
             @if (Auth::guest())
-        <a type="button" class="btn btn-primary"  href="{{ route('login')}}">Login</a>
-        <a type="button" class="btn btn-primary" href="{{route('register')}}">Register</a>
+              <a type="button" class="btn btn-primary mx-3"  href="{{ route('login')}}">Login</a>
+              <a type="button" class="btn btn-primary" href="{{route('register')}}">Register</a>
             @else
                 <div class="dropdown">
                       <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -89,6 +82,9 @@
                   </div>
             @endif
         </ul>
+
+
+  </div>
       </nav>
 
       <script>

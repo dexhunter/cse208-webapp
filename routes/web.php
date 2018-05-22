@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('home', function() {
+    return redirect('dashboard');
+});
 
 Route::get('/dashboard', 'DashboardController@index');
 
@@ -19,15 +22,17 @@ Route::resource('acts', 'ActivityController');
 Auth::routes();
 
 Route::get('alluser', 'UserController@Alluser');
-// Route::post('/acts', 'ActivityContoller@joinUser');
 
-Route::post('acts/{id}', 'UserController@joinAct');
+Route::post('acts/{id}/join', 'UserController@joinAct');
+Route::get('acts/{id}/viewuser', 'UserController@userInfo');
+Route::get('acts/{id}/destroy', 'ActivityController@fakeDestroy');
 
 Route::get('acts/category/{category_no}', 'ActivityController@searchByCategory')->where('id', '[0-6]+');
 
 Route::any('/search', 'ActivityController@searchByString');
 
-// Route::post('acts/{id}/twitter', 'ActivityController@shareToTwitter'->where('id'));
+Route::get('about', 'HomeController@about');
+
 
 Route::get('acts/{id}/twitter', function ($id){
     return redirect(Share::load('http://127.0.0.1/acts'.$id.'/twitter', 'Sharing to Twitter')->twitter());

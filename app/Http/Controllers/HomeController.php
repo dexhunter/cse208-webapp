@@ -37,5 +37,10 @@ class HomeController extends Controller
         return view('activities.index')->with(array('activities'=>$acts, 'title'=>null));
     }
 
+    public function about()
+    {
+        return view('pages.about');
+    }
+
 
 }
