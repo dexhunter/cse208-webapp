@@ -20,7 +20,9 @@
                 <div class="input-group">
                     <input type="file" name="cover_image" id="imgInp" class="form-control-file">
                 </div>
-                <img id='img-upload'>
+                <div class="text-center">
+                    <img id='img-upload' class="rouned mx-auto d-block">
+                </div>
             </div>
         </div>
 

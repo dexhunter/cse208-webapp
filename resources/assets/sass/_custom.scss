@@ -1,0 +1,36 @@
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    position: absolute;
+    bottom: 20px;
+    color: black;
+    border: 0;
+    background: none;
+    z-index: 1;
+}
+
+.slick-prev {
+    left: 20px;
+}
+
+.slick-prev:before {
+    content: "\f104";
+    font: 40px/1 'FontAwesome';
+    color: black;
+}
+
+.slick-next {
+    right: 20px;
+    text-align: right;
+}
+
+.slick-next:before {
+    content: "\f105";
+    font: 40px/1 'FontAwesome';
+    color: black;
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before {
+    color: #7e7e7e;
+}

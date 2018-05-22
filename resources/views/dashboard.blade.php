@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                     <a href="/acts/create" class="btn btn-primary">Create Activity</a>
-                    <h3>Your Acitivty</h3>
+                    <h3>The activity you published</h3>
                     @if(count($activities) > 0)
                         <table class="table table-striped">
                             <tr>
@@ -17,15 +17,17 @@
                                 <th></th>
                                 <th></th>
                             </tr>
-                            @foreach($activities as $activity)
+                            @foreach($activities as $act)
                                 <tr>
-                                    <td>{{$activity->title}}</td>
-                                    <td><a href="/acts/{{$activity->id}}/edit" class="btn btn-default">Edit</a></td>
+                                    <td>{{$act->title}}</td>
+                                    <td><a href="/acts/{{$act->id}}/edit" class="btn btn-default">Edit</a></td>
                                     <td>
-                                        {!!Form::open(['action' => ['ActivityController@destroy', $activity->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                                            {{Form::hidden('_method', 'DELETE')}}
-                                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                                        {!!Form::close()!!}
+
+                                    <form action=" {{action('ActivityController@destroy', $act->id)}}" method="post">
+                                        <input type="hidden" name="_method" value="PATCH">
+                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                    
+                                    </form>
                                     </td>
                                 </tr>
                             @endforeach

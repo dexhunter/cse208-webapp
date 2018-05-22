@@ -17,30 +17,31 @@ class ActivityController extends Controller
     public function searchByCategory(Request $request)
     {
         $acts = Activity::where('category_no', '=', $request->category_no)->paginate(10);
-        return view('activities.index')->with('activities', $acts);
+        return view('activities.index')->with(array('activities'=> $acts, 'title'=>$request->category_no));
     }
 
     public function searchByString(Request $request)
     {
         $searchInput = $request->get('q');
         $acts = Activity::where('title', 'LIKE', '%'.$searchInput.'%')->orWhere('body', 'LIKE', '%'.$searchInput.'%')->orderBy('created_at', 'desc')->paginate(10);
-        return view('activities.index')->with('activities', $acts);
+        // return view('activities.index')->with('activities', $acts);
+        return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
     }
 
     public function sortByPageView()
     {
-        // $acts = Activity::all()->sortByDesc(function ($act){
-        //     return $act->getPageViews();
-        // });
-        $acts = Activity::all()->sortBy('page_views');
+        $acts = Activity::all()->sortByDesc(function ($act){
+            return $act->getPageViews();
+        });
+        // $acts = Activity::all()->sortBy('page_views');
 
-        return view('activities.index')->with('activities', $acts);
+        return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
     }
 
     public function index()
     {
         $acts = Activity::orderBy('created_at', 'desc')->paginate(10);
-        return view('activities.index')->with('activities', $acts);
+        return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
     }
 
     public function create()
@@ -97,7 +98,6 @@ class ActivityController extends Controller
     public function show($id)
     {
         $act = Activity::find($id);
-        $act->addPageViewThatExpiresAt(Carbon::now()->addHours(2));
         return view('activities.show')->with('act', $act);
     }
 

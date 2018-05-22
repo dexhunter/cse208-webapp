@@ -23,12 +23,15 @@ class UserController extends Controller
 
         // $id = Auth::id();
         // $me = User::find($id);
-        $me = Auth::user();
-
-        $me->activities()->attach($act->id);
-
-        // return $this->responseSuccess();
-        return redirect('acts')->with('success', 'You have joined the activity');
+        if(!Auth::guest()){
+            $me = Auth::user();
+            $me->activities()->attach($act->id);
+            // return $this->responseSuccess();
+            return redirect('acts')->with('success', 'You have joined the activity');
+        }
+        else{
+            return redirect('acts')->with('error', 'You need to log in first');
+        }
     }
 
     public function quitAct(Request $request)

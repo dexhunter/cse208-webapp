@@ -3,14 +3,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Edit Activity</h1>
-    <form action=" {{ action('ActivityController@update', $act->id) }} " method="post">
-        @csrf
-        <input name="_method" type="hidden" value="PATCH">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="form-group col-md-3">
+<div class="container py-3">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="jumbotron text-center col-md-8">
+            <h1>Edit Activity</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <form action=" {{ action('ActivityController@update', $act->id) }} " method="post" class="col-md-8">
+            @csrf
+            <input name="_method" type="hidden" value="PATCH">
+            <div class="form-group">
                 <label for="CoverImage">Upload Cover Image</label>
                 <div class="input-group">
                     <input type="file" name="cover_image" id="imgInp" class="form-control-file">
@@ -60,7 +65,7 @@
                 <div class="form-group">
                         <label for="StartTime">Start Datetime: </label>
                     <div class="input-group date" id="datetimepicker1">
-                        <input type="text" class="form-control">
+                        <input type="datetime" class="form-control" name="start_time">
                         &nbsp;
                         <span class="input-group-addon">
                             <span class="fa fa-calendar"></span>
@@ -76,7 +81,7 @@
                 <div class="form-group">
                         <label for="EndTime">End Datetime: </label>
                     <div class="input-group date" id="datetimepicker2">
-                        <input type="text" class="form-control">
+                        <input type="datetime" class="form-control" name="end_time">
                         &nbsp;
                         <span class="input-group-addon">
                             <span class="fa fa-calendar"></span>
@@ -98,7 +103,7 @@
 
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-4 float-md-right">
+            <div class="col-md-4 text-align-center">
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
 
