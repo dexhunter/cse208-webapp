@@ -25,9 +25,14 @@ class UserController extends Controller
         // $me = User::find($id);
         if(!Auth::guest()){
             $me = Auth::user();
-            $me->activities()->attach($act->id);
-            // return $this->responseSuccess();
-            return redirect('acts')->with('success', 'You have joined the activity');
+            if($me->activities->find($act) != null){
+                return redirect('acts')->with('error', 'You have already joined the activity');
+            }
+            else{
+                $me->activities()->attach($act->id);
+                // return $this->responseSuccess();
+                return redirect('acts')->with('success', 'You have joined the activity');
+            }
         }
         else{
             return redirect('acts')->with('error', 'You need to log in first');

@@ -5,8 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-    <div class="col-md-2"></div>
-    <div class="jumbotron col-md-8 text-center">
+    <div class="jumbotron col-md-8 text-center offset-md-2">
 
     <h1>Create Activity</h1>
     </div>
@@ -14,8 +13,7 @@
     <form action=" {{url('acts')}} " method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-3 offset-md-2">
                 <label for="CoverImage">Upload Cover Image</label>
                 <div class="input-group">
                     <input type="file" name="cover_image" id="imgInp" class="form-control-file">
@@ -62,8 +60,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
+            <div class="col-md-3 offset-md-2">
                 <div class="form-group">
                         <label for="StartTime">Start Datetime: </label>
                     <div class="input-group date" id="datetimepicker1">
@@ -94,8 +91,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="form-group col-md-8">
+            <div class="form-group col-md-8 offset-md-2">
                 <label for="Body">Content</label>
                 <textarea class="form-control" name="body" id="textbody" cols="95" rows="300" wrap="soft"></textarea>
 
@@ -104,17 +100,12 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-4 float-md-right">
+            <div class="col-md-4 float-md-right offset-md-2">
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
 
         </div>
-
-
-    
     </form>
-
 </div>
 
     <script type="text/javascript">

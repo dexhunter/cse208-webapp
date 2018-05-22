@@ -173,11 +173,16 @@ class ActivityController extends Controller
         $act = Activity::find($actid);
         if (!Auth::guest()){
             $me = Auth::user();
-            $act->users()->attach($me->id);
-            return $redirect('acts')->with('success', 'You have joined the activty');
+            if($me->activties->find($act) != null){
+                return redirect('acts')->with('error', 'You have already joined the activity');
+            }
+            else{
+                $act->users()->attach($me->id);
+                return redirect('acts')->with('success', 'You have joined the activty');
+            }
         }
         else{
-            return $redirect('acts')->with('error', 'You do not have authority to join');
+            return redirect('acts')->with('error', 'You need to log in to join an acitivty');
         }
 
     }
