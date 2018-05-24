@@ -56,7 +56,7 @@ class Activity extends Model
         $viewModel = app(\CyrildeWit\PageViewCounter\Contracts\PageView::class);
 
         return $query->leftJoin($viewModel->getTable(), "{$viewModel->getTable()}.visitable_id", '=', "{$viewable->getTable()}.{$viewable->getKeyName()}")
-            ->selectRaw("{$viewable->getTable()}.*, count(`{$viewModel->getTable()}`.{$viewModel->getKeyName()}) as numOfViews")
+            ->selectRaw("{$viewable->getTable()}.*, count('{$viewModel->getTable()}.visitable_id') as numOfViews")
             ->groupBy("{$viewable->getTable()}.{$viewable->getKeyName()}")
             ->orderBy('numOfViews', $direction);
     }

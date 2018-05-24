@@ -47,7 +47,6 @@
                 </div>
             </div>
         @endforeach
-        {{$activities->links()}}
     @else
         <p>No activities found</p>
     @endif

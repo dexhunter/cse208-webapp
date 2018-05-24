@@ -30,7 +30,9 @@ class ActivityController extends Controller
     public function sortByPageView(Request $request)
     {
 
-        $acts = Activity::orderBy('created_at', 'desc')->orderByViewsCount()->get();
+        // $acts = Activity::orderBy('created_at', 'desc')->orderByViewsCount()->paginate(10);
+        $acts = Activity::orderByViewsCount()->orderBy('created_at', 'desc')->get();
+
         // $acts = Activity::orderByViewsCount()->paginate();
 
         return view('activities.index')->with(array('activities'=> $acts, 'title'=>null));
