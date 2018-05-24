@@ -31,6 +31,8 @@ Route::get('acts/category/{category_no}', 'ActivityController@searchByCategory')
 
 Route::any('/search', 'ActivityController@searchByString');
 
+Route::any('pageview', 'ActivityController@sortByPageView');
+
 Route::get('about', 'HomeController@about');
 
 
