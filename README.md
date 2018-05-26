@@ -9,3 +9,7 @@
     *   `factory(App\User::class, 10)->create()`
     *   `factory(App\Activity::class, 10)->create()`
 *   `php artisan serve`
+
+## Preview
+
+![](preview.gif)
